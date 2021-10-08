@@ -1,174 +1,96 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Folder Animation using scss iteration</title>
+		<title>Flash Games Download</title>
 		<meta charset="utf-8">
-	</head>
-	<body>
-		<div class="folder">
-			<div class="paper one"></div>
-			<div class="paper two"></div>
-			<div class="paper three"></div>
-			<div class="paper four"></div>
-		</div>
-
+		<meta name="description" content="Descarga Juegos Flash aquí">
 		<style>
-			body {
-				background-color: #1e1f26;
+			@import url(https://fonts.googleapis.com/css?family=Product+Sans);
+			@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+			h2 {
+				font-family: 'Product Sans', sans-serif;
+				font-size: 80px;
+				text-align: center;
 			}
-			body .folder {
-				cursor: pointer;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				margin-right: -50%;
-				transform: translate(-50%, -50%);
-				background-color: #FFD485;
-				width: 200px;
-				height: 150px;
-				border-radius: 10px;
+			.flash-logo {
+				vertical-align: -25px;
 			}
-			body .folder:before {
-				width: 55px;
-				height: 25px;
-				border-radius: 5px;
+			* {
+				font-family: 'Roboto', sans-serif;
+			}
+			.game-card span {
+				font-size: 20px;
+			}
+			.game-card a {
+				text-decoration: none;
+				position: relative;
+				font-size: 20px;
+    			color: #00bb00;
+    			font-weight: 600;
+			}
+			.game-card a::before {
 				content: "";
-				background-color: #FFD485;
-				position: absolute;
-				top: -10px;
-				left: 0px;
+			    width: 0%;
+			    height: 3px;
+			    background-color: #00bb00;
+			    display: block;
+			    bottom: -3px;
+			    left: 0;
+			    position: absolute;
+			    transition: width 250ms ease-in-out;
 			}
-			body .folder:after {
-				display: block;
-				width: 200px;
-				height: 150px;
+			.game-card a:hover::before {
+			    width: 100%;
+			}
+			.game-card {
 				border-radius: 10px;
-				content: "";
-				transform: skew(0deg);
-				background-color: #ffe1a8;
-				transition: all 0.2s;
+				box-shadow: 0 1px 3px #00000070;
+				width: 330px;
+				padding: 15px;
+				background-color: #f7f7f7;
+				height: 77px;
+				margin-bottom: 15px;
 			}
-			body .folder .paper {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				margin-right: -50%;
-				transform: translate(-50%, -50%);
-				background-color: whitesmoke;
-				width: 190px;
-				height: 140px;
-				transition: all 0.2s;
+			.logo-flash {
+				background-image: url(data:image/png;base64,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);
+				background-size: contain;
+				width: 80px;
+				height: 80px;
+				float: left;
+				margin-right: 13px;
 			}
-			body .folder .paper.one {
-				background-color: #ffadad;
-			}
-			body .folder .paper.two {
-				background-color: #ffd6a5;
-			}
-			body .folder .paper.three {
-				background-color: #fdffb6;
-			}
-			body .folder .paper.four {
-				background-color: #9bf6ff;
-			}
-			body .folder:hover:after {
-				transform: skew(-20deg);
-				margin-left: 25px;
-			}
-			body .folder:hover .paper:nth-child(1) {
-				transform: rotate(10deg) translate(-80px, -80px);
-			}
-			body .folder:hover .paper:nth-child(2) {
-				transform: rotate(20deg) translate(-80px, -80px);
-			}
-			body .folder:hover .paper:nth-child(3) {
-				transform: rotate(30deg) translate(-80px, -80px);
-			}
-			body .folder:hover .paper:nth-child(4) {
-				transform: rotate(40deg) translate(-80px, -80px);
+			.container {
+				width: 1280px;
+				margin: auto;
 			}
 		</style>
-
-		<!-- SCSS Code -->
-		<!--
-		$papers: 4;
-		$colors:( 
-		  "one":#ffadad,
-		  "two":#ffd6a5,
-		  "three":#fdffb6,
-		  "four": #9bf6ff
-		);
-		  
-		body {
-		  background-color: #1e1f26;
-		  //back side of the folder
-		  .folder{
-		    cursor: pointer;
-		    position: absolute;
-		    top: 50%;
-		    left: 50%;
-		    margin-right: -50%;
-		    transform: translate(-50%, -50%);
-		    background-color: #FFD485;
-		    width: 200px;
-		    height: 150px;
-		    border-radius: 10px;
-		    //folder label
-		    &:before {
-		      width: 55px;
-		      height: 25px;
-		      border-radius: 5px;
-		      content: '';
-		      background-color: #FFD485;
-		      position: absolute;
-		      top: -10px;
-		      left: 0px;
-		    }
-		    //front side of the folder
-		    &:after {
-		      display: block;
-		      width: 200px;
-		      height: 150px;
-		      border-radius: 10px;
-		      content: '';
-		      transform: skew(0deg);
-		      background-color: #ffe1a8;
-		      transition: all .2s;
-		    }
-		    
-		    .paper {
-		      position: absolute;
-		      top: 50%;
-		      left: 50%;
-		      margin-right: -50%;
-		      transform: translate(-50%, -50%);
-		      background-color: whitesmoke;
-		      width: 190px;
-		      height: 140px;
-		      transition: all .2s;
-		      //adding bg color for each paper div
-		      @each $color, $i in $colors {
-		         &.#{$color} {
-		             background-color: $i;
-		         }	
-		      }
-		    }
-		    
-		    &:hover{
-		      //adding front lapel of folder animation
-		      &:after {
-		        transform: skew(-20deg);
-		        margin-left:25px;
-		      }
-		      //adding paper animation
-		      @for $i from 1 through $papers {
-		        .paper:nth-child(#{$i}) {
-		            transform: rotate(#{$i}0deg) translate(-80px, -80px);
-		        }
-		      }
-		    }
-		  }
-		}
-		-->
+	</head>
+	<body>
+		<h2>
+			<img class="flash-logo" width="110" src="data:image/png;base64,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">
+			Flash Games
+		</h2>
+		<div class="container">
+			<div class="game-card">
+				<div class="logo-flash"></div>
+				<span>Fancy Pants Adventures 3</span><br>
+				<a target="_blank" href="http://www.GamesForWork.com/games/swf/Fancy Pants Adventure World 3_April_9th_2012.swf">Descargar</a>
+			</div>
+			<div class="game-card">
+				<div class="logo-flash"></div>
+				<span>Vex</span><br>
+				<a target="_blank" href="https://games.macrojuegos.com/18000/18151/578041dae9451a61f17e0f8f16ecgfuy.swf">Descargar</a>
+			</div>
+			<div class="game-card">
+				<div class="logo-flash"></div>
+				<span>Vex 2</span><br>
+				<a target="_blank" href="https://www.bestgames.com/files/Vex-2.swf">Descargar</a>
+			</div>
+			<div class="game-card">
+				<div class="logo-flash"></div>
+				<span>Vex 3</span><br>
+				<a target="_blank" href="https://99b57a22-a-62cb3a1a-s-sites.googlegroups.com/site/minimunch57gameurls5/vex-3/Vex%203.swf">Descargar</a>
+			</div>
+		</div>
 	</body>
 </html>
